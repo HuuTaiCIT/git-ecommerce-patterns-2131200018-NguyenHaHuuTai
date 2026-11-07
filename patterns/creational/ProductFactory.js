@@ -1,10 +1,18 @@
 class Product {
     constructor(details) {
+        this.id = details.id;
         this.name = details.name || 'Generic Product';
         this.price = details.price || 0;
     }
     describe() {
         console.log(`${this.name} - $${this.price}`);
+    }
+    getPrice() {
+    return this.price;
+}
+
+    getDescription() {
+        return this.name;
     }
 }
 
@@ -36,7 +44,16 @@ class ProductFactory {
         // Use a switch statement or if/else chain to check the `type`.
         // Based on the `type`, return a new instance of `Book`, `Electronic`, or a default `Product`.
         // Pass the `details` object to the constructor of the chosen class.
+        switch (type.toLowerCase()) {
+            case 'book':
+                return new Book(details);
+            case 'electronic':
+                return new Electronic(details);
+            default:
+                return new Product(details);
+        }
     }
 }
+
 
 export { ProductFactory };
